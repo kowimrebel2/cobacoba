@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIAKAD - Sistem Informasi Akademik</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo-kampus.png" type="image/png">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="login-box">
+            <div class="logo-container">
+                <img src="logokampusss.jpeg" alt="Logo Kampus" class="logo">
+            </div>
+            <h1>SIAKAD</h1>
+            <p>Sistem Informasi Akademik</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">NIM / Username:</label>
+                    <input type="text" id="username" placeholder="Masukkan NIM atau Username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" placeholder="Masukkan Password" required>
+                </div>
+                
+                <button type="submit" class="btn-login">LOGIN <i class="fas fa-arrow-right"></i></button>
+            </form>
+            
+            <p style="margin-top: 20px; font-size: 12px; color: #999;">
+                © 2025 SIAKAD Universitas Muhammadiyah Bima
+            </p>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard">
+        <div class="container">
+            <div class="header">
+                <h1>Dashboard Mahasiswa</h1>
+                <div class="user-info">
+                    <span>Selamat datang, <strong id="studentName">Yadi Saputra</strong></span>
+                    <button class="logout-btn" onclick="logout()">Logout <i class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="sidebar">
+                    <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i> Menu
+                    </div>
+                    <div class="menu-items-container">
+                        <h3>Menu</h3>
+                        <div class="menu-item active" onclick="showContent('beranda')"><i class="fas fa-home"></i> Beranda</div>
+                        <div class="menu-item" onclick="showContent('profil')"><i class="fas fa-user"></i> Profil</div>
+                        <div class="menu-item" onclick="showContent('krs')"><i class="fas fa-file-alt"></i> KRS</div>
+                        <div class="menu-item" onclick="showContent('khs')"><i class="fas fa-chart-bar"></i> KHS</div>
+                        <div class="menu-item" onclick="showContent('pembayaran')"><i class="fas fa-credit-card"></i> Pembayaran</div>
+                        <div class="menu-item" onclick="showContent('jadwal')"><i class="fas fa-calendar-alt"></i> Jadwal Kuliah</div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <!-- Beranda -->
+                    <div id="beranda" class="content-section active">
+                        <h2>Beranda</h2>
+                        
+                        <div class="card">
+                            <h3><i class="fas fa-graduation-cap"></i> Selamat Datang di SIAKAD</h3>
+                            <p>Sistem Informasi Akademik untuk memudahkan Anda dalam mengelola data akademik dan administrasi kampus.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3><i class="fas fa-bullhorn"></i> Pengumuman Terbaru</h3>
+                            <p><strong>15 Mei 2025:</strong> Batas akhir pembayaran UKT Semester Genap 2024/2025 adalah 31 Mei 2025.</p>
+                            <p><strong>10 Mei 2025:</strong> Pendaftaran KRS periode 2025/2026 dimulai 1 Juni 2025.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3><i class="fas fa-chart-line"></i> Status Akademik</h3>
+                            <p><strong>IPK:</strong> 3.75</p>
+                            <p><strong>SKS Total:</strong> 120</p>
+                            <p><strong>Semester:</strong> 6</p>
+                        </div>
+                    </div>
+
+                    <!-- Profil -->
+                    <div id="profil" class="content-section">
+                        <h2>Profil Mahasiswa</h2>
+                        
+                        <div class="card">
+                            <h3><i class="fas fa-id-card"></i> Data Pribadi</h3>
+                            <div class="profile-container">
+                                <div class="profile-photo-container">
+                                    <img id="profilePhoto" src="default-profile.jpg" alt="">
+                                    <button class="btn btn-primary" onclick="document.getElementById('photoUpload').click()">Ubah Foto</button>
+                                    <input type="file" id="photoUpload" accept="image/*" style="display:none" onchange="uploadPhoto(event)">
+                                </div>
+                                <table class="table">
+                                    <tr>
+                                        <td><strong>NIM</strong></td>
+                                        <td>12345678</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Nama Lengkap</strong></td>
+                                        <td>Yadi Saputra</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Program Studi</strong></td>
+                                        <td>Ilmu Komputer</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fakultas</strong></td>
+                                        <td>Fakultas Teknik</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Angkatan</strong></td>
+                                        <td>2024</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Status</strong></td>
+                                        <td>Aktif</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KRS -->
+                    <div id="krs" class="content-section">
+                        <h2>Kartu Rencana Studi (KRS)</h2>
+                        
+                        <div class="card">
+                            <h3><i class="fas fa-book"></i> KRS Semester Genap 2024/2025</h3>
+                            <button class="btn btn-primary" onclick="showAddMkModal()"><i class="fas fa-plus"></i> Tambah Mata Kuliah</button>
+                            <button class="btn btn-success" onclick="downloadKRS()"><i class="fas fa-download"></i> Unduh KRS</button>
+                            
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Kode MK</th>
+                                            <th>Mata Kuliah</th>
+                                            <th>SKS</th>
+                                            <th>Dosen</th>
+                                            <th>Kelas</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>TI001</td>
+                                            <td>Algoritma dan Pemrograman</td>
+                                            <td>3</td>
+                                            <td>Dr. Ahmad</td>
+                                            <td>A</td>
+                                            <td><button class="btn btn-warning" onclick="hapusMataKuliah(this)"><i class="fas fa-trash"></i> Hapus</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <p><strong>Total SKS: 3</strong></p>
+                        </div>
+                    </div>
+
+                    <!-- KHS -->
+                    <div id="khs" class="content-section">
+                        <h2>Kartu Hasil Studi (KHS)</h2>
+                        
+                        <div class="card">
+                            <h3><i class="fas fa-chart-pie"></i> KHS Semester Ganjil 2024/2025</h3>
+                            <button class="btn btn-success" onclick="downloadKHS()"><i class="fas fa-download"></i> Unduh KHS</button>
+                            
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Kode MK</th>
+                                            <th>Mata Kuliah</th>
+                                            <th>SKS</th>
+                                            <th>Nilai</th>
+                                            <th>Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>TI001</td>
+                                            <td>Pemrograman Web</td>
+                                            <td>3</td>
+                                            <td>85</td>
+                                            <td>A</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <p><strong>IP Semester: 3.67</strong></p>
+                            <p><strong>IPK: 3.75</strong></p>
+                        </div>
+                    </div>
+
+                    <!-- Pembayaran -->
+                    <div id="pembayaran" class="content-section">
+                        <h2>Pembayaran UKT</h2>
+                        
+                        <div class="card">
+                            <h3><i class="fas fa-money-bill-wave"></i> Status Pembayaran</h3>
+                            
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Semester</th>
+                                            <th>Tahun Akademik</th>
+                                            <th>Jumlah</th>
+                                            <th>Status</th>
+                                            <th>Tanggal Bayar</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Genap</td>
+                                            <td>2024/2025</td>
+                                            <td>Rp 3.500.000</td>
+                                            <td><span class="status-unpaid">Belum Bayar</span></td>
+                                            <td>-</td>
+                                            <td><button class="btn btn-primary" onclick="bayarDenganQRIS()"><i class="fas fa-qrcode"></i> Bayar dengan QRIS</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- QRIS Payment Modal -->
+                            <div id="qrisModal" class="modal">
+                                <div class="modal-content qris-payment">
+                                    <span class="close" onclick="closeModal()">&times;</span>
+                                    <div class="qris-header">
+                                        <i class="fas fa-qrcode"></i>
+                                        <h3>Pembayaran UKT via QRIS</h3>
+                                    </div>
+                                    
+                                    <div class="qris-body">
+                                        <div class="qris-image-container">
+                                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://siakad.univ/payment/12345678" 
+                                                 alt="QR Code Pembayaran"
+                                                 class="qris-image">
+                                            <div class="payment-amount">
+                                                <span>Total Pembayaran:</span>
+                                                <strong>Rp 3.500.000</strong>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="qris-instructions">
+                                            <h4><i class="fas fa-info-circle"></i> Cara Pembayaran:</h4>
+                                            <ol>
+                                                <li>Buka aplikasi mobile banking atau e-wallet</li>
+                                                <li>Pilih menu pembayaran QRIS</li>
+                                                <li>Scan QR code di atas</li>
+                                                <li>Konfirmasi pembayaran</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="paymentStatus">
+                                        <p class="payment-waiting"><i class="fas fa-spinner fa-spin"></i> Menunggu pembayaran...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jadwal -->
+                    <div id="jadwal" class="content-section">
+                        <h2>Jadwal Kuliah</h2>
+                        
+                        <div class="card">
+                            <h3><i class="fas fa-calendar"></i> Jadwal Semester Genap 2024/2025</h3>
+                            <button class="btn btn-primary" onclick="showAddJadwalModal()"><i class="fas fa-plus"></i> Tambah Jadwal</button>
+                            
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Hari</th>
+                                            <th>Waktu</th>
+                                            <th>Mata Kuliah</th>
+                                            <th>Dosen</th>
+                                            <th>Ruangan</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Senin</td>
+                                            <td>08:00 - 10:30</td>
+                                            <td>Algoritma dan Pemrograman</td>
+                                            <td>Dr. Ahmad</td>
+                                            <td>Lab 1</td>
+                                            <td><button class="btn btn-warning" onclick="hapusJadwal(this)"><i class="fas fa-trash"></i> Hapus</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add MK Modal -->
+    <div id="addMkModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddMkModal()">&times;</span>
+            <h3>Tambah Mata Kuliah</h3>
+            <form id="addMkForm">
+                <div class="form-group">
+                    <label for="mkKode">Kode MK:</label>
+                    <input type="text" id="mkKode" required>
+                </div>
+                <div class="form-group">
+                    <label for="mkNama">Nama Mata Kuliah:</label>
+                    <input type="text" id="mkNama" required>
+                </div>
+                <div class="form-group">
+                    <label for="mkSks">SKS:</label>
+                    <input type="number" id="mkSks" min="1" max="6" required>
+                </div>
+                <div class="form-group">
+                    <label for="mkDosen">Dosen Pengampu:</label>
+                    <input type="text" id="mkDosen" required>
+                </div>
+                <div class="form-group">
+                    <label for="mkKelas">Kelas:</label>
+                    <input type="text" id="mkKelas" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Tambah</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Jadwal Modal -->
+    <div id="addJadwalModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddJadwalModal()">&times;</span>
+            <h3>Tambah Jadwal Kuliah</h3>
+            <form id="addJadwalForm">
+                <div class="form-group">
+                    <label for="jadwalHari">Hari:</label>
+                    <select id="jadwalHari" required>
+                        <option value="">Pilih Hari</option>
+                        <option value="Senin">Senin</option>
+                        <option value="Selasa">Selasa</option>
+                        <option value="Rabu">Rabu</option>
+                        <option value="Kamis">Kamis</option>
+                        <option value="Jumat">Jumat</option>
+                        <option value="Sabtu">Sabtu</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="jadwalWaktu">Waktu:</label>
+                    <input type="text" id="jadwalWaktu" placeholder="Contoh: 08:00 - 10:30" required>
+                </div>
+                <div class="form-group">
+                    <label for="jadwalMk">Mata Kuliah:</label>
+                    <input type="text" id="jadwalMk" required>
+                </div>
+                <div class="form-group">
+                    <label for="jadwalDosen">Dosen:</label>
+                    <input type="text" id="jadwalDosen" required>
+                </div>
+                <div class="form-group">
+                    <label for="jadwalRuangan">Ruangan:</label>
+                    <input type="text" id="jadwalRuangan" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Tambah</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
